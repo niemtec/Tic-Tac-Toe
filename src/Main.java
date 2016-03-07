@@ -26,12 +26,21 @@ public class Main {
 		new AppWindow();
 		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
 		AppWindow.clearBoardIcons();
+		//Populate grid with dummy data to avoid null pointer exceptions
+		Arrays.fill(gameGrid, "N");
 
 		//TODO Randomly choose who goes first? Check specification
 		chooseFirstPlayer();
+		System.out.println(currentPlayer);
 
-		//Populate grid with dummy data to avoid null pointer exceptions
-		Arrays.fill(gameGrid, "N");
+		//If AI is on and its turn is due, make the move
+		if (aiEnabled == true && currentPlayer == 2) {
+			AI.aiBasicMove();
+			currentPlayer++;
+			Validation.validateMove(XOButton.lastIconCheck);
+		}
+
+
 	}
 
 	public static void chooseFirstPlayer() {

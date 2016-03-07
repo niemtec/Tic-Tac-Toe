@@ -103,6 +103,12 @@ public class AppWindow {
 		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
 		Main.movementCount = 1;
 		Main.chooseFirstPlayer();
+		//If AI is on and its turn is due, make the move
+		if (Main.aiEnabled == true && Main.currentPlayer == 2) {
+			AI.aiBasicMove();
+			Main.currentPlayer++;
+			Validation.validateMove(XOButton.lastIconCheck);
+		}
 	}
 
 	//Clear all saved records from the gameGrid

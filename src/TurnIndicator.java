@@ -3,7 +3,7 @@ import javax.swing.*;
 public class TurnIndicator {
 	public static void updateTurnIndicatorLabel() {
 		String secondPlayerName;
-		int previousPlayer = Main.currentPlayer % 2;
+		int previousPlayer = Main.currentPlayer%2;
 
 		//Determine what to call the second player based on the game mode
 		if (Main.aiEnabled == true) {
@@ -20,7 +20,6 @@ public class TurnIndicator {
 			 * too fast anyway?
 			 */
 		}
-		Main.currentPlayer++;
 	}
 
 

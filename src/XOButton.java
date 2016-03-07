@@ -33,7 +33,7 @@ public class XOButton extends JButton implements ActionListener {
 
 		for (int i = 0; i < AppWindow.button.length; i++) {
 			if (click == AppWindow.button[i]) {
-				if (Main.movementCount % 2 == 1) {
+				if (Main.movementCount%2 == 1) {
 					AppWindow.button[i].setIcon(XOButton.iconX);
 					Main.gameGrid[i] = "X";
 					lastIconCheck = "X";
@@ -46,9 +46,15 @@ public class XOButton extends JButton implements ActionListener {
 				break;
 			}
 		}
-		//TODO make the ai move return to here
+
+		//AI only makes the move if it is enabled and previous player made the move
+		if (Main.aiEnabled == true) {
+			Main.movementCount++;
+			AI.aiBasicMove();
+			//Main.movementCount++;
+		}
 		Validation.validateMove(lastIconCheck);
-		//TODO check if AI should move after click?
+		Main.currentPlayer++;
 	}
 
 	public static void disableButton(int i) {
