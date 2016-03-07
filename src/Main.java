@@ -21,12 +21,19 @@ public class Main {
 		//Ask user to select game mode
 		aiEnabled = GUI.selectGameMode();
 
-		//Create the app window
-		new AppWindow();
-		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
-		AppWindow.clearBoardIcons();
-		//Populate grid with dummy data to avoid null pointer exceptions
-		Arrays.fill(gameGrid, ".");
+
+		try {
+			//Create the app window
+			new AppWindow();
+			TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
+			AppWindow.clearBoardIcons();
+			//Populate grid with dummy data to avoid null pointer exceptions
+			Arrays.fill(gameGrid, ".");
+		} catch (IllegalArgumentException e) {	//Catch missing image files
+			GUI.missingResourcesError();
+			System.out.println("One or more image files is missing from the resource directory");
+			shutdownApplication();
+		}
 
 		chooseFirstPlayer();
 

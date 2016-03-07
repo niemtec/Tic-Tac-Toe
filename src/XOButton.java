@@ -18,7 +18,7 @@ public class XOButton extends JButton implements ActionListener {
 			iconO = new ImageIcon(ImageIO.read(AppWindow.class.getResource("resources/O.png")));
 		} catch (IOException e) {
 			System.out.println("One or more of the icon images is missing from the resources folder.");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		//Add action listener to the button
 		this.addActionListener(this);

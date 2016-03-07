@@ -57,5 +57,10 @@ public class GUI {
 					 "if all 9 squares are filled and no one has won, you draw."
 				  ,"Help", JOptionPane.INFORMATION_MESSAGE);
 	}
+
+	public static void missingResourcesError() {
+		JOptionPane.showMessageDialog(null, "One or more image files is missing from the \n" +
+		"'/resources' folder. The application will now close", "Missing Files", JOptionPane.WARNING_MESSAGE);
+	}
 }
 
