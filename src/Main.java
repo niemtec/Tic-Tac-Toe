@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
  * Jakub Adrian Niemiec (1500408)
  */
 
-//TODO test this stuff
-
 public class Main {
 	//gameGrid array stores all of the inputs from the user
 	public static String[] gameGrid = new String[9];
