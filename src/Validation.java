@@ -1,4 +1,3 @@
-
 public class  Validation {
 	public static boolean checkWin(String value) {
 		boolean winDetected;
@@ -7,21 +6,18 @@ public class  Validation {
 		if ((Main.gameGrid[0].contains(value) && Main.gameGrid[1].contains(value) && Main.gameGrid[2].contains(value))
 				  || (Main.gameGrid[3].contains(value) && Main.gameGrid[4].contains(value) && Main.gameGrid[5].contains(value))
 				  || (Main.gameGrid[6].contains(value) && Main.gameGrid[7].contains(value) && Main.gameGrid[8].contains(value))) {
-			System.out.println(value + " Won");
 			winDetected = true;
 		}
 		//Check for vertical win
 		 else if ((Main.gameGrid[0].contains(value) && Main.gameGrid[3].contains(value) && Main.gameGrid[6].contains(value))
 				  || (Main.gameGrid[1].contains(value) && Main.gameGrid[4].contains(value) && Main.gameGrid[7].contains(value))
 				  || (Main.gameGrid[2].contains(value) && Main.gameGrid[5].contains(value) && Main.gameGrid[8].contains(value))) {
-			System.out.println(value + " Won");
 			winDetected = true;
 		}
 		//Check for diagonal win
 		else if ((Main.gameGrid[6].contains(value) && Main.gameGrid[7].contains(value) && Main.gameGrid[8].contains(value))
 				  || (Main.gameGrid[0].contains(value) && Main.gameGrid[4].contains(value) && Main.gameGrid[8].contains(value))
 				  || (Main.gameGrid[2].contains(value) && Main.gameGrid[4].contains(value) && Main.gameGrid[6].contains(value))) {
-			System.out.println(value + " Won");
 			winDetected = true;
 		} else {
 			winDetected = false;

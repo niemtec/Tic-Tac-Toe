@@ -15,7 +15,6 @@ import javax.swing.border.EmptyBorder;
 /*
  * Class governing the main application window.
  */
-
 public class AppWindow {
 	int paddingSize = 5;
 

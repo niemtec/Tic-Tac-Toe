@@ -58,7 +58,7 @@ public class XOButton extends JButton implements ActionListener {
 		}
 	}
 
-	private void disableButton(int buttonIndex) {
+	public static void disableButton(int buttonIndex) {
 		if (Main.gameGrid[buttonIndex].contains("X")) {
 			AppWindow.button[buttonIndex].setDisabledIcon(iconX);
 		} else if (Main.gameGrid[buttonIndex].contains("O")) {

@@ -21,8 +21,6 @@ public class Main {
 		//Ask user to select game mode
 		gameMode = GUI.selectGameMode();
 
-
-
 		//Create the app window
 		new AppWindow();
 		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
@@ -33,7 +31,6 @@ public class Main {
 
 		//Populate grid with dummy data to avoid null pointer exceptions
 		Arrays.fill(gameGrid, "N");
-		System.out.println("MC = " +movementCount);
 	}
 
 	public static void chooseFirstPlayer() {
