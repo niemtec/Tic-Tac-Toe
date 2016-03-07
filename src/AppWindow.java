@@ -101,15 +101,9 @@ public class AppWindow {
 		clearBoardIcons();
 		enableGridButtons();
 		//TODO add current player to the label
-		//TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
+		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
 		Main.movementCount = 1;
 		Main.chooseFirstPlayer();
-
-		//TODO Remove debugging when ready
-		//Debugging
-		System.out.println("--------------");
-		System.out.println("Game Restarted");
-		System.out.println("MC = " + Main.movementCount);
 	}
 
 	//Clear all saved records from the gameGrid

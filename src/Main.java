@@ -21,15 +21,15 @@ public class Main {
 		//Ask user to select game mode
 		gameMode = GUI.selectGameMode();
 
-		//TODO Randomly choose who goes first? Check specification
-		chooseFirstPlayer();
+
 
 		//Create the app window
 		new AppWindow();
-
-		//TODO CLEAN THIS SHIT
-		AppWindow.clearBoardIcons();
 		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
+		AppWindow.clearBoardIcons();
+
+		//TODO Randomly choose who goes first? Check specification
+		chooseFirstPlayer();
 
 		//Populate grid with dummy data to avoid null pointer exceptions
 		Arrays.fill(gameGrid, "N");
@@ -42,6 +42,7 @@ public class Main {
 		currentPlayer = rand.nextInt(2) + 1;
 		JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
 				  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
+		TurnIndicator.updateTurnIndicatorLabel();
 	}
 
 	public static void shutdownApplication() {

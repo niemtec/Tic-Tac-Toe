@@ -27,8 +27,6 @@ public class XOButton extends JButton implements ActionListener {
 	//Checks which gird button has been pressed
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//TODO Remove
-		System.out.println("Count of listeners: " + ((JButton) e.getSource()).getActionListeners().length);
 		//Get source of the click (which button has been clicked on?)
 		Object click = e.getSource();
 		String lastIconCheck = null;
@@ -45,11 +43,6 @@ public class XOButton extends JButton implements ActionListener {
 					lastIconCheck = "O";
 				}
 				disableButton(i);
-				//AppWindow.button[i].removeActionListener(this);
-
-				//TODO Remove debugging when ready
-				//System.out.print(Main.iconTurn);
-				System.out.println(Main.movementCount);
 				break;
 			}
 		}
@@ -58,8 +51,6 @@ public class XOButton extends JButton implements ActionListener {
 			//Indicate the game winner
 			TurnIndicator.setTurnIndicatorLabel(lastIconCheck + " won the game!");
 			GUI.winnerDetectedMessage(lastIconCheck);
-			//JOptionPane.showMessageDialog(null, lastIconCheck, "Winner", JOptionPane.INFORMATION_MESSAGE);
-			//AppWindow.resetGame();
 		} else {
 			Validation.checkDraw();
 			Main.movementCount++;
@@ -67,18 +58,12 @@ public class XOButton extends JButton implements ActionListener {
 		}
 	}
 
-private void disableButton(int buttonIndex) {
-	if (Main.gameGrid[buttonIndex].contains("X")) {
-		AppWindow.button[buttonIndex].setDisabledIcon(iconX);
-	} else if (Main.gameGrid[buttonIndex].contains("O")) {
-		AppWindow.button[buttonIndex].setDisabledIcon(iconO);
+	private void disableButton(int buttonIndex) {
+		if (Main.gameGrid[buttonIndex].contains("X")) {
+			AppWindow.button[buttonIndex].setDisabledIcon(iconX);
+		} else if (Main.gameGrid[buttonIndex].contains("O")) {
+			AppWindow.button[buttonIndex].setDisabledIcon(iconO);
+		}
+		AppWindow.button[buttonIndex].setEnabled(false);
 	}
-	AppWindow.button[buttonIndex].setEnabled(false);
-}
-//	//Disables all action listeners on the game grid
-//	public void disableGridButtons() {
-//		for (int i = 0; i < 9; i++) {
-//			AppWindow.button[i].removeActionListener(this);
-//		}
-//	}
 }
