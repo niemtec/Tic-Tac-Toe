@@ -1,4 +1,16 @@
 public class  Validation {
+	public static void validateMove(String lastIcon) {
+		if (checkWin(lastIcon)) {
+			//Indicate the game winner
+			TurnIndicator.setTurnIndicatorLabel(lastIcon + " won the game!");
+			GUI.winnerDetectedMessage(lastIcon);
+		} else {
+			Validation.checkDraw();
+			Main.movementCount++;
+			TurnIndicator.updateTurnIndicatorLabel();
+		}
+	}
+
 	public static boolean checkWin(String value) {
 		boolean winDetected;
 

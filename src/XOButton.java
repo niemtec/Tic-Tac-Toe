@@ -46,24 +46,17 @@ public class XOButton extends JButton implements ActionListener {
 				break;
 			}
 		}
-
-		if (Validation.checkWin(lastIconCheck) == true) {
-			//Indicate the game winner
-			TurnIndicator.setTurnIndicatorLabel(lastIconCheck + " won the game!");
-			GUI.winnerDetectedMessage(lastIconCheck);
-		} else {
-			Validation.checkDraw();
-			Main.movementCount++;
-			TurnIndicator.updateTurnIndicatorLabel();
-		}
+		//TODO make the ai move return to here
+		Validation.validateMove(lastIconCheck);
+		//TODO check if AI should move after click?
 	}
 
-	public static void disableButton(int buttonIndex) {
-		if (Main.gameGrid[buttonIndex].contains("X")) {
-			AppWindow.button[buttonIndex].setDisabledIcon(iconX);
-		} else if (Main.gameGrid[buttonIndex].contains("O")) {
-			AppWindow.button[buttonIndex].setDisabledIcon(iconO);
+	public static void disableButton(int i) {
+		if (Main.gameGrid[i].contains("X")) {
+			AppWindow.button[i].setDisabledIcon(iconX);
+		} else if (Main.gameGrid[i].contains("O")) {
+			AppWindow.button[i].setDisabledIcon(iconO);
 		}
-		AppWindow.button[buttonIndex].setEnabled(false);
+		AppWindow.button[i].setEnabled(false);
 	}
 }

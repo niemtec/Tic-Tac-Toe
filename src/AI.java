@@ -20,6 +20,7 @@ public class AI {
 				} else {
 					AppWindow.button[i].setIcon(XOButton.iconO);
 				}
+
 				XOButton.lastIconCheck = aiSymbol;
 				//Place move in the game grid
 				Main.gameGrid[i] = aiSymbol;
