@@ -41,7 +41,7 @@ public class  Validation {
 		//Check if all boxes are filled and no win is present
 		int filledIndexCount = 0;
 		for (int i = 0; i < Main.gameGrid.length; i++) {
-			if (Main.gameGrid[i] != "N") {
+			if (Main.gameGrid[i] != ".") {
 				filledIndexCount++;
 			}
 			if (filledIndexCount == 9) {

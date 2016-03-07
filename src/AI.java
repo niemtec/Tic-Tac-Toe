@@ -12,8 +12,8 @@ public class AI {
 
 		//Progress through the grid and find the next available empty spot
 		for (int i = 0; i < Main.gameGrid.length; i++) {
-			//If empty slot is detected - "N" slot
-			if (Main.gameGrid[i].equals("N")) {
+			//If empty slot is detected - "." slot
+			if (Main.gameGrid[i].equals(".")) {
 				//Set icon by AI
 				if (aiSymbol.equals("X")) {
 					AppWindow.button[i].setIcon(XOButton.iconX);

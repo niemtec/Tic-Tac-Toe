@@ -27,7 +27,7 @@ public class Main {
 		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
 		AppWindow.clearBoardIcons();
 		//Populate grid with dummy data to avoid null pointer exceptions
-		Arrays.fill(gameGrid, "N");
+		Arrays.fill(gameGrid, ".");
 
 		//TODO Randomly choose who goes first? Check specification
 		chooseFirstPlayer();

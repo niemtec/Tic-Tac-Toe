@@ -47,5 +47,19 @@ public class GUI {
 			Main.shutdownApplication();
 		}
 	}
+
+	public static void showHelp() {
+		JOptionPane.showMessageDialog(null,
+				  "The Rules: \n" +
+				 	"- The game is played on a grid that's 3x3 \n" +
+					 "- The computer randomly chooses who goes first \n" +
+					 "- The player to go first, begins the game as X \n" +
+					 "- You alternatively place X or O until one of you wins! \n" +
+					 "\nWinning Conditions: \n" +
+					 "The first player to get 3 of their marks in a row \n" +
+					 "(up, down, across or diagonally) is the winner, \n" +
+					 "if all 9 squares are filled and no one has won, you draw."
+				  ,"Help", JOptionPane.INFORMATION_MESSAGE);
+	}
 }
 

@@ -2,8 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -31,9 +29,9 @@ public class AppWindow {
 	//Turn indicator label
 	public static JLabel turnIndicatorLabel = new JLabel();
 	//bottomPanel buttons
-	private JButton startButton = new JButton();
-	private JButton centreButton = new JButton("Centre");
-	private JButton resetButton = new JButton("Right");
+	private JButton helpButton = new JButton();
+	private JButton exitButton = new JButton();
+	private JButton resetButton = new JButton();
 
 	//JFrame Constructor
 	public AppWindow() throws IOException {
@@ -70,8 +68,10 @@ public class AppWindow {
 		bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
 		bottomPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 		//bottomPanel.add(startButton);
-		bottomPanel.add(centreButton);
+		bottomPanel.add(helpButton);
 		bottomPanel.add(resetButton);
+		bottomPanel.add(exitButton);
+
 
 		//TurnIndicator Label
 		//TODO Create a background?
@@ -84,12 +84,20 @@ public class AppWindow {
 		appWindowFrame.add(bottomPanel, BorderLayout.SOUTH);
 
 		//Button Action Listeners
+		//Help Button
+		helpButton.setBackground(Color.white);
+		helpButton.setText("Help");
+		helpButton.addActionListener(e -> GUI.showHelp());
 		//Reset Button
 		resetButton.setBackground(Color.white);
 		resetButton.setText("Reset");
-
 		//Reset button uses lambda pointing right to the action instead of creating a new instance the long way
 		resetButton.addActionListener(e -> resetGame());
+
+		//Exit Button
+		exitButton.setBackground(Color.white);
+		exitButton.setText("Exit");
+		exitButton.addActionListener(e -> Main.shutdownApplication());
 	}
 
 	/**
@@ -113,7 +121,7 @@ public class AppWindow {
 
 	//Clear all saved records from the gameGrid
 	public static void clearGameGridArray() {
-		Arrays.fill(Main.gameGrid, "N");
+		Arrays.fill(Main.gameGrid, ".");
 	}
 
 	//Clear all icons from the game grid
