@@ -6,10 +6,10 @@ public class TurnIndicator {
 		int previousPlayer = Main.currentPlayer % 2;
 
 		//Determine what to call the second player based on the game mode
-		if (Main.gameMode.equals("PlayerVPlayer")) {
-			secondPlayerName = "Player 2";
-		} else {
+		if (Main.aiEnabled == true) {
 			secondPlayerName = "AI";
+		} else {
+			secondPlayerName = "Player 2";
 		}
 
 		if (previousPlayer == 1) {

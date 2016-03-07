@@ -5,8 +5,9 @@ import javax.swing.*;
  **/
 public class GUI {
 
-	public static String selectGameMode() {
+	public static boolean selectGameMode() {
 		String gameMode = null;
+		boolean aiStatus = false;
 
 		Object[] options = {"Player vs Player", "Challenge the AI"};
 
@@ -15,11 +16,13 @@ public class GUI {
 
 		if (reply == JOptionPane.YES_OPTION) {
 			gameMode = "PlayerVPlayer";
+			aiStatus = false;
 		} else if (reply == JOptionPane.NO_OPTION) {
 			gameMode = "PlayerVAI";
+			aiStatus = true;
 		}
-
-		return gameMode;
+		System.out.println(gameMode);
+		return aiStatus;
 	}
 
 	public static void drawDetectedMessage() {

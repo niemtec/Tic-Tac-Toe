@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class XOButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 6167021308779841017L;
-
+	public static String lastIconCheck = null;
 	static ImageIcon iconX, iconO;
 
 	public XOButton() {
@@ -29,7 +29,7 @@ public class XOButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//Get source of the click (which button has been clicked on?)
 		Object click = e.getSource();
-		String lastIconCheck = null;
+		//String lastIconCheck = null;
 
 		for (int i = 0; i < AppWindow.button.length; i++) {
 			if (click == AppWindow.button[i]) {

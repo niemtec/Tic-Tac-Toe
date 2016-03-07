@@ -16,10 +16,11 @@ public class Main {
 	public static int movementCount = 1;
 	public static int currentPlayer;
 	public static String gameMode = null;
+	public static boolean aiEnabled;
 
 	public static void main(String[] args) throws IOException {
 		//Ask user to select game mode
-		gameMode = GUI.selectGameMode();
+		aiEnabled = GUI.selectGameMode();
 
 		//Create the app window
 		new AppWindow();
@@ -37,8 +38,13 @@ public class Main {
 		//Generate random number to determine who goes first
 		Random rand = new Random();
 		currentPlayer = rand.nextInt(2) + 1;
-		JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
-				  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
+		if (aiEnabled == true && currentPlayer == 2) {
+			JOptionPane.showMessageDialog(null, "AI will now make the move", "AI Engaged", JOptionPane.INFORMATION_MESSAGE);
+			//TODO AI Should make the first move now?
+		} else {
+			JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
+					  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
+		}
 		TurnIndicator.updateTurnIndicatorLabel();
 	}
 
