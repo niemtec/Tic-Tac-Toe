@@ -15,7 +15,6 @@ public class Main {
 	//public static int iconTurn = 1;
 	public static int movementCount = 1;
 	public static int currentPlayer;
-	public static String gameMode = null;
 	public static boolean aiEnabled;
 
 	public static void main(String[] args) throws IOException {
@@ -29,9 +28,7 @@ public class Main {
 		//Populate grid with dummy data to avoid null pointer exceptions
 		Arrays.fill(gameGrid, ".");
 
-		//TODO Randomly choose who goes first? Check specification
 		chooseFirstPlayer();
-		System.out.println(currentPlayer);
 
 		//If AI is on and its turn is due, make the move
 		if (aiEnabled == true && currentPlayer == 2) {
@@ -39,8 +36,6 @@ public class Main {
 			currentPlayer++;
 			Validation.validateMove(XOButton.lastIconCheck);
 		}
-
-
 	}
 
 	public static void chooseFirstPlayer() {
@@ -49,7 +44,6 @@ public class Main {
 		currentPlayer = rand.nextInt(2) + 1;
 		if (aiEnabled == true && currentPlayer == 2) {
 			JOptionPane.showMessageDialog(null, "AI will now make the move", "AI Engaged", JOptionPane.INFORMATION_MESSAGE);
-			//TODO AI Should make the first move now?
 		} else {
 			JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
 					  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
@@ -58,8 +52,6 @@ public class Main {
 	}
 
 	public static void shutdownApplication() {
-		//TODO Fix the shutdown?
-		System.out.println("I tried to quit!");
 		System.exit(0);
 	}
 }

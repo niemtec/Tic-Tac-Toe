@@ -16,9 +16,6 @@ public class TurnIndicator {
 			setTurnIndicatorLabel("Current Turn: Player 1");
 		} else if (previousPlayer == 0) {
 			setTurnIndicatorLabel("Current Turn: " + secondPlayerName);
-			/* TODO when Jarvis is playing, disable the game grid so that the user can't click. Unless this will happen
-			 * too fast anyway?
-			 */
 		}
 	}
 
@@ -31,5 +28,3 @@ public class TurnIndicator {
 		AppWindow.turnIndicatorLabel.setText(String.valueOf(label));
 	}
 }
-
-//TODO Add flashing function to capture users' attention
