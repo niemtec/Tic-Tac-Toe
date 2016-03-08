@@ -48,10 +48,10 @@ public class XOButton extends JButton implements ActionListener {
 		}
 		Validation.validateMove(lastIconCheck);
 		//AI only makes the move if it is enabled and previous player made the move
-		if (Main.aiEnabled == true) {
-			//Main.movementCount++;
+		if (Main.aiEnabled) {
 			AI.aiBasicMove();
-			//Main.movementCount++;
+		} else {
+			Main.movementCount++;
 		}
 		Validation.validateMove(lastIconCheck);
 		Main.currentPlayer++;

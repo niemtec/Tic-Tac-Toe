@@ -16,26 +16,15 @@ import javax.swing.border.EmptyBorder;
 public class AppWindow {
 	int paddingSize = 5;
 
-	//Main app window frame containing all the elements
-	private JFrame appWindowFrame = new JFrame();
-	//Top panel
-	private JPanel topPanel = new JPanel();
-	//Central panel containing the game grid
-	private JPanel gameGridPanel = new JPanel();
-	//Bottom panel
-	private JPanel bottomPanel = new JPanel();
 	//Create gameGrid buttons
 	public static XOButton button[] = new XOButton[9];
 	//Turn indicator label
 	public static JLabel turnIndicatorLabel = new JLabel();
-	//bottomPanel buttons
-	private JButton helpButton = new JButton();
-	private JButton exitButton = new JButton();
-	private JButton resetButton = new JButton();
 
 	//JFrame Constructor
 	public AppWindow() throws IOException {
 		//appWindowFrame Properties, main window containing all elements
+		JFrame appWindowFrame = new JFrame();
 		appWindowFrame.setVisible(true);
 		appWindowFrame.setSize(410, 510);
 		appWindowFrame.setBackground(Color.white);
@@ -45,12 +34,14 @@ public class AppWindow {
 		appWindowFrame.setLocationRelativeTo(null);	//centers the window
 
 		//topPanel Properties
+		JPanel topPanel = new JPanel();
 		topPanel.setVisible(true);
 		topPanel.setSize(400, 50);
-		topPanel.add(TurnIndicator.getTurnIndicatorLabel());
+		topPanel.add(GUI.getTurnIndicatorLabel());
 		topPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 
 		//gameGridPanel Properties
+		JPanel gameGridPanel = new JPanel();
 		gameGridPanel.setVisible(true);
 		gameGridPanel.setSize(400, 400);
 		gameGridPanel.setLayout(new GridLayout(3, 3));
@@ -63,18 +54,20 @@ public class AppWindow {
 		}
 
 		//bottomPanel Properties
+		JPanel bottomPanel = new JPanel();
 		bottomPanel.setVisible(true);
 		bottomPanel.setSize(400, 50);
 		bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
 		bottomPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
-		//bottomPanel.add(startButton);
+		JButton helpButton = new JButton();
 		bottomPanel.add(helpButton);
+		JButton resetButton = new JButton();
 		bottomPanel.add(resetButton);
+		JButton exitButton = new JButton();
 		bottomPanel.add(exitButton);
 
 
 		//TurnIndicator Label
-		//TODO Create a background?
 		turnIndicatorLabel.setFont(turnIndicatorLabel.getFont().deriveFont(20.0f));
 
 		//Add stuff to the frame
@@ -104,19 +97,20 @@ public class AppWindow {
 	 * Method which resets the entire game back to its orignal state. Clearing all icons and values from the game grid.
 	 **/
 	public static void resetGame() {
-		clearGameGridArray();
-		clearBoardIcons();
-		enableGridButtons();
-		//TODO add current player to the label
-		TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
-		Main.movementCount = 1;
-		Main.chooseFirstPlayer();
-		//If AI is on and its turn is due, make the move
-		if (Main.aiEnabled == true && Main.currentPlayer == 2) {
-			AI.aiBasicMove();
-			Main.currentPlayer++;
-			Validation.validateMove(XOButton.lastIconCheck);
-		}
+		try {
+			clearGameGridArray();
+			clearBoardIcons();
+			enableGridButtons();
+			GUI.setTurnIndicatorLabel("Press Start When Ready");
+			Main.movementCount = 1;
+			Main.chooseFirstPlayer();
+			//If AI is on and its turn is due, make the move
+			if (Main.aiEnabled && Main.currentPlayer == 2) {
+				AI.aiBasicMove();
+				Main.currentPlayer++;
+				Validation.validateMove(XOButton.lastIconCheck);
+			}
+		} catch (NullPointerException ignore) {}
 	}
 
 	//Clear all saved records from the gameGrid

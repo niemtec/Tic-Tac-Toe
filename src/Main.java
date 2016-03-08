@@ -16,20 +16,27 @@ public class Main {
 	public static int movementCount = 1;
 	public static int currentPlayer;
 	public static boolean aiEnabled;
+	public static String gameMode = null;
+	public static String playerMode = null;
 
-	public static void main(String[] args) throws IOException {
-		//Ask user to select game mode
-		aiEnabled = GUI.selectGameMode();
+	public static void main(String[] args) {
+		//Display primary choice panel. Ask the user about game details
+		new GameModeChooser();
+	}
 
+	public static void startApplication() throws IOException {
+		if (gameMode.equals("Player vs Player")) {
+			aiEnabled = false;
+		} else aiEnabled = true;
 
 		try {
 			//Create the app window
 			new AppWindow();
-			TurnIndicator.setTurnIndicatorLabel("Press Start When Ready");
+			GUI.setTurnIndicatorLabel("Press Start When Ready");
 			AppWindow.clearBoardIcons();
 			//Populate grid with dummy data to avoid null pointer exceptions
 			Arrays.fill(gameGrid, ".");
-		} catch (IllegalArgumentException e) {	//Catch missing image files
+		} catch (IllegalArgumentException e) {   //Catch missing image files
 			GUI.missingResourcesError();
 			System.out.println("One or more image files is missing from the resource directory");
 			shutdownApplication();
@@ -38,24 +45,35 @@ public class Main {
 		chooseFirstPlayer();
 
 		//If AI is on and its turn is due, make the move
-		if (aiEnabled == true && currentPlayer == 2) {
+		if (aiEnabled && currentPlayer == 2) {
 			AI.aiBasicMove();
 			currentPlayer++;
 			Validation.validateMove(XOButton.lastIconCheck);
 		}
 	}
 
+
 	public static void chooseFirstPlayer() {
-		//Generate random number to determine who goes first
+		//Generate random number to determine who goes first (for reset function)
 		Random rand = new Random();
 		currentPlayer = rand.nextInt(2) + 1;
-		if (aiEnabled == true && currentPlayer == 2) {
+
+		//Setup the game for first start, otherwise use random generation
+		if (playerMode.equals("Player 1")) {
+			currentPlayer = 1;
+		} else if (playerMode.equals("Player 2 (or AI)")) {
+			currentPlayer = 2;
+		}
+
+		if (aiEnabled && currentPlayer == 2) {
 			JOptionPane.showMessageDialog(null, "AI will now make the move", "AI Engaged", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
 					  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
 		}
-		TurnIndicator.updateTurnIndicatorLabel();
+		GUI.updateTurnIndicatorLabel();
+		//Clear player mode for future use
+		playerMode = null;
 	}
 
 	public static void shutdownApplication() {

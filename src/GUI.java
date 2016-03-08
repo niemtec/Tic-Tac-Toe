@@ -5,22 +5,6 @@ import javax.swing.*;
  **/
 public class GUI {
 
-	public static boolean selectGameMode() {
-		boolean aiStatus = false;
-
-		Object[] options = {"Player vs Player", "Challenge the AI"};
-
-		int reply = JOptionPane.showOptionDialog(null, "What mode would you like to play?", "Choose Game Mode",
-				  JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-
-		if (reply == JOptionPane.YES_OPTION) {
-			aiStatus = false;
-		} else if (reply == JOptionPane.NO_OPTION) {
-			aiStatus = true;
-		}
-		return aiStatus;
-	}
-
 	public static void drawDetectedMessage() {
 		int reply = JOptionPane.showConfirmDialog(null, "It's a draw! \n" +
 				  "\n Would you like to play again?", "Draw", JOptionPane.YES_NO_OPTION);
@@ -38,7 +22,9 @@ public class GUI {
 				  "\n Would you like to play again?", "Win", JOptionPane.YES_NO_OPTION);
 
 		if (reply == JOptionPane.YES_OPTION) {
-			AppWindow.resetGame();
+			try {
+				AppWindow.resetGame();
+			} catch (NullPointerException ignored) {}
 		} else {
 			Main.shutdownApplication();
 		}
@@ -48,7 +34,7 @@ public class GUI {
 		JOptionPane.showMessageDialog(null,
 				  "The Rules: \n" +
 				 	"- The game is played on a grid that's 3x3 \n" +
-					 "- The computer randomly chooses who goes first \n" +
+					 "- You can choose who goes first when you first start \n" +
 					 "- The player to go first, begins the game as X \n" +
 					 "- You alternatively place X or O until one of you wins! \n" +
 					 "\nWinning Conditions: \n" +
@@ -61,6 +47,32 @@ public class GUI {
 	public static void missingResourcesError() {
 		JOptionPane.showMessageDialog(null, "One or more image files is missing from the \n" +
 		"'/resources' folder. The application will now close", "Missing Files", JOptionPane.WARNING_MESSAGE);
+	}
+
+	public static void updateTurnIndicatorLabel() {
+		String secondPlayerName;
+		int previousPlayer = Main.currentPlayer%2;
+
+		//Determine what to call the second player based on the game mode
+		if (Main.aiEnabled) {
+			secondPlayerName = "AI";
+		} else {
+			secondPlayerName = "Player 2";
+		}
+
+		if (previousPlayer == 1) {
+			setTurnIndicatorLabel("Current Turn: Player 1");
+		} else if (previousPlayer == 0) {
+			setTurnIndicatorLabel("Current Turn: " + secondPlayerName);
+		}
+	}
+
+	public static JLabel getTurnIndicatorLabel() {
+		return AppWindow.turnIndicatorLabel;
+	}
+
+	public static void setTurnIndicatorLabel(String label) {
+		AppWindow.turnIndicatorLabel.setText(String.valueOf(label));
 	}
 }
 
