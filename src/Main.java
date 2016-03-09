@@ -12,8 +12,7 @@ import javax.swing.JOptionPane;
 public class Main {
 	//gameGrid array stores all of the inputs from the user
 	public static String[] gameGrid = new String[9];
-	//public static int iconTurn = 1;
-	public static int movementCount = 1;
+	public static byte movementCount = 1;
 	public static int currentPlayer;
 	public static boolean aiEnabled;
 	public static String gameMode = null;

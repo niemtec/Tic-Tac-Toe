@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GameModeChooser {
@@ -11,7 +13,7 @@ public class GameModeChooser {
 
 	public GameModeChooser() {
 		//GameModeChooser frame properties
-		JFrame gameModeChooserFrame = new JFrame();
+		final JFrame gameModeChooserFrame = new JFrame();
 		gameModeChooserFrame.setSize(300, 220);
 		gameModeChooserFrame.setBackground(Color.white);
 		gameModeChooserFrame.setTitle("Game Mode Chooser");
@@ -62,26 +64,37 @@ public class GameModeChooser {
 		startButton.setBackground(Color.white);
 		startButton.setText("Start");
 		//Captures IOException
-		startButton.addActionListener(e -> {
-			try {
-				//Assign combobox values to main variables governing the game
-				Main.gameMode = (String) gameModeComboBox.getSelectedItem();
-				Main.playerMode = (String) playerModeComboBox.getSelectedItem();
-				Main.startApplication();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+		startButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					//Assign combobox values to main variables governing the game
+					Main.gameMode = (String) gameModeComboBox.getSelectedItem();
+					Main.playerMode = (String) playerModeComboBox.getSelectedItem();
+					gameModeChooserFrame.dispose();
+					Main.startApplication();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
 		JButton helpButton = new JButton();
 		helpButton.setBackground(Color.white);
 		helpButton.setText("Help");
-		helpButton.addActionListener(e -> GUI.showHelp());
+		helpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI.showHelp();
+			}
+		});
 
 		JButton quitButton = new JButton();
 		quitButton.setBackground(Color.white);
 		quitButton.setText("Quit");
-		quitButton.addActionListener(e -> Main.shutdownApplication());
+		quitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.shutdownApplication();
+			}
+		});
 
 		//Add items to the main panel
 		topPanel.add(gameModeLabel);

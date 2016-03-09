@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -14,7 +16,7 @@ import javax.swing.border.EmptyBorder;
  * Class governing the main application window.
  */
 public class AppWindow {
-	int paddingSize = 5;
+	byte paddingSize = 5;
 
 	//Create gameGrid buttons
 	public static XOButton button[] = new XOButton[9];
@@ -80,17 +82,32 @@ public class AppWindow {
 		//Help Button
 		helpButton.setBackground(Color.white);
 		helpButton.setText("Help");
-		helpButton.addActionListener(e -> GUI.showHelp());
+		helpButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUI.showHelp();	
+			}
+		});
 		//Reset Button
 		resetButton.setBackground(Color.white);
 		resetButton.setText("Reset");
 		//Reset button uses lambda pointing right to the action instead of creating a new instance the long way
-		resetButton.addActionListener(e -> resetGame());
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetGame();
+			}
+		});
 
 		//Exit Button
 		exitButton.setBackground(Color.white);
 		exitButton.setText("Exit");
-		exitButton.addActionListener(e -> Main.shutdownApplication());
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.shutdownApplication();
+			}
+		});
 	}
 
 	/**
