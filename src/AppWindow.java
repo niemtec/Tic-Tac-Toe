@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-
 public class AppWindow {
 	//Padding for some of the board elements (for easier modification)
 	final byte paddingSize = 5;
@@ -66,7 +65,6 @@ public class AppWindow {
 		bottomPanel.add(resetButton);
 		JButton exitButton = new JButton();
 		bottomPanel.add(exitButton);
-
 
 		//TurnIndicator Label
 		turnIndicatorLabel.setFont(turnIndicatorLabel.getFont().deriveFont(20.0f));
