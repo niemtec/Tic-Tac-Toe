@@ -1,6 +1,6 @@
 public class AI {
 	/**
-	 * The most basic type of AI: find an empty spot and fill it up
+	 * Class containing all strategy parameters for the computer to make the move.
 	 */
 	public static void aiBasicMove() {
 		String aiSymbol;

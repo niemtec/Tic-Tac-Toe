@@ -19,19 +19,22 @@ public class Main {
 	public static String playerMode = null;
 
 	public static void main(String[] args) {
-		//Display primary choice panel. Ask the user about game details
+		//Display primary choice panel. Ask the user about game settings.
 		new GameModeChooser();
 	}
 
 	public static void startApplication() throws IOException {
 		if (gameMode.equals("Player vs Player")) {
 			aiEnabled = false;
-		} else aiEnabled = true;
+		} else {
+			aiEnabled = true;
+		}
 
 		try {
-			//Create the app window
+			//Create the game app window
 			new AppWindow();
 			GUI.setTurnIndicatorLabel("Press Start When Ready");
+			//Remove all icons (Xs and Os)
 			AppWindow.clearBoardIcons();
 			//Populate grid with dummy data to avoid null pointer exceptions
 			Arrays.fill(gameGrid, ".");
@@ -40,10 +43,10 @@ public class Main {
 			System.out.println("One or more image files is missing from the resource directory");
 			shutdownApplication();
 		}
-
+		//Choose the first player based on user input or random chance (if game is reset)
 		chooseFirstPlayer();
 
-		//If AI is on and its turn is due, make the move
+		//If AI is on and its turn is due, make the first move
 		if (aiEnabled && currentPlayer == 2) {
 			AI.aiBasicMove();
 			currentPlayer++;
@@ -64,12 +67,15 @@ public class Main {
 			currentPlayer = 2;
 		}
 
+		//Announce who will be making the first move
 		if (aiEnabled && currentPlayer == 2) {
 			JOptionPane.showMessageDialog(null, "AI will now make the move", "AI Engaged", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
 					  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
 		}
+
+		//Update turn indicator with new player information
 		GUI.updateTurnIndicatorLabel();
 		//Clear player mode for future use
 		playerMode = null;

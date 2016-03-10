@@ -1,10 +1,10 @@
 import javax.swing.*;
 
 /**
- * Contains all the graphical elements outside of the main app window.
+ * Contains all the graphical elements outside of the main app window and game chooser
  **/
 public class GUI {
-
+	//Message which announces draw being detected
 	public static void drawDetectedMessage() {
 		int reply = JOptionPane.showConfirmDialog(null, "It's a draw! \n" +
 				  "\n Would you like to play again?", "Draw", JOptionPane.YES_NO_OPTION);
@@ -17,10 +17,13 @@ public class GUI {
 		}
 	}
 
+	//Message which announces a winner being detected
 	public static void winnerDetectedMessage(String winnerName) {
 		int reply = JOptionPane.showConfirmDialog(null, "Whoa! What a game! " + winnerName + " won the game! \n" +
 				  "\n Would you like to play again?", "Win", JOptionPane.YES_NO_OPTION);
 
+		//If the user chooses Yes, reset the game
+		//TODO check if the try catch statement is needed
 		if (reply == JOptionPane.YES_OPTION) {
 			try {
 				AppWindow.resetGame();
@@ -30,6 +33,7 @@ public class GUI {
 		}
 	}
 
+	//Method which displays a simple help window explaining the rules of the game
 	public static void showHelp() {
 		JOptionPane.showMessageDialog(null,
 				  "The Rules: \n" +
@@ -44,11 +48,13 @@ public class GUI {
 				  ,"Help", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	//Method printing out a missing resource report (error when there are no images found)
 	public static void missingResourcesError() {
 		JOptionPane.showMessageDialog(null, "One or more image files is missing from the \n" +
 		"'/resources' folder. The application will now close", "Missing Files", JOptionPane.WARNING_MESSAGE);
 	}
 
+	//Method which updates the turn indicator label in the main app window
 	public static void updateTurnIndicatorLabel() {
 		String secondPlayerName;
 		int previousPlayer = Main.currentPlayer%2;
@@ -67,10 +73,12 @@ public class GUI {
 		}
 	}
 
+	//Getter for the turn indicator label
 	public static JLabel getTurnIndicatorLabel() {
 		return AppWindow.turnIndicatorLabel;
 	}
 
+	//setter for the turn indicator label (based on string input)
 	public static void setTurnIndicatorLabel(String label) {
 		AppWindow.turnIndicatorLabel.setText(String.valueOf(label));
 	}

@@ -12,12 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-/*
- * Class governing the main application window.
- */
-public class AppWindow {
-	byte paddingSize = 5;
 
+public class AppWindow {
+	//Padding for some of the board elements (for easier modification)
+	final byte paddingSize = 5;
 	//Create gameGrid buttons
 	public static XOButton button[] = new XOButton[9];
 	//Turn indicator label
@@ -35,14 +33,14 @@ public class AppWindow {
 		appWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		appWindowFrame.setLocationRelativeTo(null);	//centers the window
 
-		//topPanel Properties
+		//topPanel Properties (will contain turn indicator)
 		JPanel topPanel = new JPanel();
 		topPanel.setVisible(true);
 		topPanel.setSize(400, 50);
 		topPanel.add(GUI.getTurnIndicatorLabel());
 		topPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 
-		//gameGridPanel Properties
+		//gameGridPanel Properties (will contain grid buttons)
 		JPanel gameGridPanel = new JPanel();
 		gameGridPanel.setVisible(true);
 		gameGridPanel.setSize(400, 400);
@@ -55,12 +53,13 @@ public class AppWindow {
 			gameGridPanel.add(button[i]);
 		}
 
-		//bottomPanel Properties
+		//bottomPanel Properties (will contain various buttons)
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setVisible(true);
 		bottomPanel.setSize(400, 50);
 		bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
 		bottomPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
+		//Add buttons to the bottom panel
 		JButton helpButton = new JButton();
 		bottomPanel.add(helpButton);
 		JButton resetButton = new JButton();
@@ -72,7 +71,7 @@ public class AppWindow {
 		//TurnIndicator Label
 		turnIndicatorLabel.setFont(turnIndicatorLabel.getFont().deriveFont(20.0f));
 
-		//Add stuff to the frame
+		//Add all the components to the frame (border layout)
 		appWindowFrame.setLayout(new BorderLayout(paddingSize, paddingSize));
 		appWindowFrame.add(topPanel, BorderLayout.NORTH);
 		appWindowFrame.add(gameGridPanel, BorderLayout.CENTER);
@@ -88,10 +87,10 @@ public class AppWindow {
 				GUI.showHelp();	
 			}
 		});
+
 		//Reset Button
 		resetButton.setBackground(Color.white);
 		resetButton.setText("Reset");
-		//Reset button uses lambda pointing right to the action instead of creating a new instance the long way
 		resetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,7 +110,8 @@ public class AppWindow {
 	}
 
 	/**
-	 * Method which resets the entire game back to its orignal state. Clearing all icons and values from the game grid.
+	 * Method which resets the entire game back to its original state. Clearing all icons and values from the game grid.
+	 * Next player is then generated randomly if the game is continued.
 	 **/
 	public static void resetGame() {
 		try {
@@ -130,7 +130,7 @@ public class AppWindow {
 		} catch (NullPointerException ignore) {}
 	}
 
-	//Clear all saved records from the gameGrid
+	//Clear all saved records from the gameGrid (restore them back to original "." state)
 	public static void clearGameGridArray() {
 		Arrays.fill(Main.gameGrid, ".");
 	}
@@ -145,7 +145,6 @@ public class AppWindow {
 	//Enables all action listeners on the game grid
 	public static void enableGridButtons() {
 		for (int i = 0; i < 9; i++) {
-			//AppWindow.button[i].addActionListener(new XOButton());
 			AppWindow.button[i].setEnabled(true);
 		}
 	}
