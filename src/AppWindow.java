@@ -121,9 +121,9 @@ public class AppWindow {
 			Main.chooseFirstPlayer();
 			//If AI is on and its turn is due, make the move
 			if (Main.aiEnabled && Main.currentPlayer == 2) {
-				AI.aiBasicMove();
+				AI.aiMove();
 				Main.currentPlayer++;
-				Validation.validateMove(XOButton.lastIconCheck);
+				Validation.checkMove(XOButton.lastIconCheck);
 			}
 		} catch (NullPointerException ignore) {}
 	}

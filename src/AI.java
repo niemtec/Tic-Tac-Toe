@@ -1,30 +1,48 @@
+import java.util.Random;
+
 public class AI {
 	/**
 	 * Class containing all strategy parameters for the computer to make the move.
 	 */
-	public static void aiBasicMove() {
-		String aiSymbol;
-		if (Main.movementCount%2 == 1) {
+	public static String aiSymbol;
+	public static void aiMove() {
+		//String aiSymbol;
+		if (Main.movementCount % 2 == 1) {
 			aiSymbol = "X";
 		} else {
 			aiSymbol = "O";
 		}
 
-		//Progress through the grid and find the next available empty spot
-		for (int i = 0; i < Main.gameGrid.length; i++) {
-			//If empty slot is detected - "." slot
-			if (Main.gameGrid[i].equals(".")) {
-				//Set icon by AI
-				if (aiSymbol.equals("X")) {
-					AppWindow.button[i].setIcon(XOButton.iconX);
-				} else {
-					AppWindow.button[i].setIcon(XOButton.iconO);
+		//If the central positon of the grid is empty, use that if you can
+		if (Main.gameGrid[4].equals(".")) {
+			setAIIcon(4, aiSymbol);
+		} else {
+			Random rand = new Random();
+			int randomPosition = rand.nextInt(8) + 0;
+
+			if(Main.gameGrid[randomPosition].equals(".")) {
+				setAIIcon(randomPosition, aiSymbol);
+			} else {
+				for (int i = 0; i < Main.gameGrid.length; i++) {
+					if (Main.gameGrid[i].equals(".")) {
+						setAIIcon(i, aiSymbol);
+						break;
+					}
 				}
-				XOButton.lastIconCheck = aiSymbol;
-				Main.gameGrid[i] = aiSymbol;
-				XOButton.disableButton(i);
-				break;
 			}
 		}
+	}
+
+
+	private static void setAIIcon(int arrayIndex, String symbol) {
+		if (symbol.equals("X")) {
+			AppWindow.button[arrayIndex].setIcon(XOButton.iconX);
+		} else {
+			AppWindow.button[arrayIndex].setIcon(XOButton.iconO);
+		}
+
+		XOButton.lastIconCheck = aiSymbol;
+		Main.gameGrid[arrayIndex] = aiSymbol;
+		XOButton.disableButton(arrayIndex);
 	}
 }

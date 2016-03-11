@@ -48,9 +48,9 @@ public class Main {
 
 		//If AI is on and its turn is due, make the first move
 		if (aiEnabled && currentPlayer == 2) {
-			AI.aiBasicMove();
+			AI.aiMove();
 			currentPlayer++;
-			Validation.validateMove(XOButton.lastIconCheck);
+			Validation.checkMove(XOButton.lastIconCheck);
 		}
 	}
 

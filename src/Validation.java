@@ -1,6 +1,6 @@
 public class  Validation {
 	//Method used to validate each move, checking if the winning condition is met, it announces win otherwise it checks for draw
-	public static void validateMove(String lastIcon) {
+	public static void checkMove(String lastIcon) {
 		if (checkWin(lastIcon)) {
 			//Indicate the game winner
 			GUI.setTurnIndicatorLabel(lastIcon + " won the game!");

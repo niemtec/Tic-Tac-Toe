@@ -8,6 +8,7 @@ import javax.swing.*;
 //XO Button class extending JButton (with ActionListener)
 public class XOButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 6167021308779841017L;
+	//Stores previously used symbol and passes it on to the validation function
 	public static String lastIconCheck = null;
 	static ImageIcon iconX, iconO;
 
@@ -47,19 +48,18 @@ public class XOButton extends JButton implements ActionListener {
 		}
 
 		//Check if the move made was the winning one or whether it was a draw
-		Validation.validateMove(lastIconCheck);
+		Validation.checkMove(lastIconCheck);
 		//AI only makes the move if it is enabled and previous player made the move
 		if (Main.aiEnabled) {
-			AI.aiBasicMove();
-			//Validate the move after the AI moves (if it does)
-			Validation.validateMove(lastIconCheck);
+			AI.aiMove();
 		} else {
 			Main.movementCount++;
 		}
+		//Validate the move after the AI moves (if it does)
+		Validation.checkMove(lastIconCheck);
 		//Increment the current player count
 		Main.currentPlayer++;
 	}
-
 
 	public static void disableButton(int i) {
 		if (Main.gameGrid[i].contains("X")) {
