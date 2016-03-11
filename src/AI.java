@@ -17,12 +17,13 @@ public class AI {
 		if (Main.gameGrid[4].equals(".")) {
 			setAIIcon(4, aiSymbol);
 		} else {
+			//If the preferred position is taken, try a random one
 			Random rand = new Random();
 			int randomPosition = rand.nextInt(8) + 0;
-
 			if(Main.gameGrid[randomPosition].equals(".")) {
 				setAIIcon(randomPosition, aiSymbol);
 			} else {
+				//If random move is unavailable, try to fill in the nearest unavailable square
 				for (int i = 0; i < Main.gameGrid.length; i++) {
 					if (Main.gameGrid[i].equals(".")) {
 						setAIIcon(i, aiSymbol);
@@ -33,7 +34,7 @@ public class AI {
 		}
 	}
 
-
+	//Method setting
 	private static void setAIIcon(int arrayIndex, String symbol) {
 		if (symbol.equals("X")) {
 			AppWindow.button[arrayIndex].setIcon(XOButton.iconX);

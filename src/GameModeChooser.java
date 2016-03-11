@@ -14,7 +14,7 @@ public class GameModeChooser {
 	public GameModeChooser() {
 		//GameModeChooser frame properties
 		final JFrame gameModeChooserFrame = new JFrame();
-		gameModeChooserFrame.setSize(300, 220);
+		gameModeChooserFrame.setSize(300, 250);
 		gameModeChooserFrame.setBackground(Color.white);
 		gameModeChooserFrame.setTitle("Game Mode Chooser");
 		gameModeChooserFrame.setResizable(false);
@@ -38,10 +38,15 @@ public class GameModeChooser {
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 
+		//gameTitleLabel properties
+		JLabel gameTitleLabel = new JLabel();
+		gameTitleLabel.setText(".: Tic Tac Toe :.");
+		gameTitleLabel.setFont(gameTitleLabel.getFont().deriveFont(26.0f));
+		gameTitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		//gameModeLabel properties
 		JLabel gameModeLabel = new JLabel();
-		gameModeLabel.setText("Choose your preferred game mode");
+		gameModeLabel.setText("\nChoose your preferred game mode");
 		gameModeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		//playerModeLabel properties
 		JLabel playerModeLabel = new JLabel();
@@ -97,6 +102,7 @@ public class GameModeChooser {
 		});
 
 		//Add items to the main panel
+		topPanel.add(gameTitleLabel);
 		topPanel.add(gameModeLabel);
 		topPanel.add(Box.createVerticalStrut(10));
 		topPanel.add(gameModeComboBox);
