@@ -24,7 +24,7 @@ public class XOButton extends JButton implements ActionListener {
 		this.addActionListener(this);
 	}
 
-	//Checks which gird button has been pressed
+	//Checks which grid button has been pressed
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Get source of the click (which button has been clicked on?)
