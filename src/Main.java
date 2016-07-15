@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
  * CS1702: Introductory Programming Coursework
  * Brunel University London 2015/16
  * Jakub Adrian Niemiec (1500408)
+ * Any and all copyright belongs to Brunel University
+ * (This is a modified source code and therefore differs to that submitted as part of the course)
  */
 
 public class Main {
@@ -24,22 +26,18 @@ public class Main {
 	}
 
 	public static void startApplication() throws IOException {
-		if (gameMode.equals("Player vs Player")) {
-			aiEnabled = false;
-		} else {
-			aiEnabled = true;
-		}
+		aiEnabled = !gameMode.equals("Player vs Player");
 
 		try {
 			//Create the game app window
-			new AppWindow();
-			GUI.setTurnIndicatorLabel("Press Start When Ready");
+			new GameWindow();
+			GameWindow.setIndicatorLabel("Press Start When Ready");
 			//Remove all icons (Xs and Os)
-			AppWindow.clearBoardIcons();
+			GameWindow.clearBoardIcons();
 			//Populate grid with dummy data to avoid null pointer exceptions
 			Arrays.fill(gameGrid, ".");
 		} catch (IllegalArgumentException e) {   //Catch missing image files
-			GUI.missingResourcesError();
+			GameWindow.missingResourcesError();
 			System.out.println("One or more image files is missing from the resource directory");
 			shutdownApplication();
 		}
@@ -76,7 +74,7 @@ public class Main {
 		}
 
 		//Update turn indicator with new player information
-		GUI.updateTurnIndicatorLabel();
+		GameWindow.updateTurnIndicatorLabel();
 		//Clear player mode for future use
 		playerMode = null;
 	}

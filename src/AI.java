@@ -19,7 +19,7 @@ public class AI {
 		} else {
 			//If the preferred position is taken, try a random one
 			Random rand = new Random();
-			int randomPosition = rand.nextInt(8) + 0;
+			int randomPosition = rand.nextInt(8);
 			if(Main.gameGrid[randomPosition].equals(".")) {
 				setAIIcon(randomPosition, aiSymbol);
 			} else {
@@ -37,9 +37,9 @@ public class AI {
 	//Method setting
 	private static void setAIIcon(int arrayIndex, String symbol) {
 		if (symbol.equals("X")) {
-			AppWindow.button[arrayIndex].setIcon(XOButton.iconX);
+			GameWindow.button[arrayIndex].setIcon(XOButton.iconX);
 		} else {
-			AppWindow.button[arrayIndex].setIcon(XOButton.iconO);
+			GameWindow.button[arrayIndex].setIcon(XOButton.iconO);
 		}
 
 		XOButton.lastIconCheck = aiSymbol;

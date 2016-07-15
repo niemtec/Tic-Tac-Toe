@@ -15,8 +15,8 @@ public class XOButton extends JButton implements ActionListener {
 	public XOButton() {
 		this.setBackground(Color.white);
 		try {
-			iconX = new ImageIcon(ImageIO.read(AppWindow.class.getResource("resources/X.png")));
-			iconO = new ImageIcon(ImageIO.read(AppWindow.class.getResource("resources/O.png")));
+			iconX = new ImageIcon(ImageIO.read(GameWindow.class.getResource("resources/X.png")));
+			iconO = new ImageIcon(ImageIO.read(GameWindow.class.getResource("resources/O.png")));
 		} catch (IOException e) {
 			System.out.println("One or more of the icon images is missing from the resources folder.");
 		}
@@ -30,14 +30,14 @@ public class XOButton extends JButton implements ActionListener {
 		//Get source of the click (which button has been clicked on?)
 		Object click = e.getSource();
 
-		for (int i = 0; i < AppWindow.button.length; i++) {
-			if (click == AppWindow.button[i]) {
+		for (int i = 0; i < GameWindow.button.length; i++) {
+			if (click == GameWindow.button[i]) {
 				if (Main.movementCount%2 == 1) {
-					AppWindow.button[i].setIcon(XOButton.iconX);
+					GameWindow.button[i].setIcon(XOButton.iconX);
 					Main.gameGrid[i] = "X";	//record current value to the game grid
 					lastIconCheck = "X";
 				} else {
-					AppWindow.button[i].setIcon(XOButton.iconO);
+					GameWindow.button[i].setIcon(XOButton.iconO);
 					Main.gameGrid[i] = "O";	//record current value to the game grid
 					lastIconCheck = "O";
 				}
@@ -63,10 +63,10 @@ public class XOButton extends JButton implements ActionListener {
 
 	public static void disableButton(int i) {
 		if (Main.gameGrid[i].contains("X")) {
-			AppWindow.button[i].setDisabledIcon(iconX);
+			GameWindow.button[i].setDisabledIcon(iconX);
 		} else if (Main.gameGrid[i].contains("O")) {
-			AppWindow.button[i].setDisabledIcon(iconO);
+			GameWindow.button[i].setDisabledIcon(iconO);
 		}
-		AppWindow.button[i].setEnabled(false);
+		GameWindow.button[i].setEnabled(false);
 	}
 }

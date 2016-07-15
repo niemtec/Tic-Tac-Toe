@@ -1,15 +1,13 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GameModeChooser {
 	int paddingSize = 5;
 
-	private JComboBox gameModeComboBox = new JComboBox();
-	private JComboBox playerModeComboBox = new JComboBox();
+	private JComboBox<String> gameModeComboBox = new JComboBox<>();
+	private JComboBox<String> playerModeComboBox = new JComboBox<>();
 
 	public GameModeChooser() {
 		//GameModeChooser frame properties
@@ -56,50 +54,38 @@ public class GameModeChooser {
 		//gameModeComboBox properties
 		//selected option is processed when user presses start
 		String[] gameModeOptions = {"Player vs Player", "Player vs AI"};
-		gameModeComboBox = new JComboBox(gameModeOptions);
-
+		gameModeComboBox = new JComboBox<>(gameModeOptions);
 
 		//playerModeComboBox properties
 		String[] playerModeOptions = {"Player 1", "Player 2 (or AI)"};
-		playerModeComboBox = new JComboBox(playerModeOptions);
-
+		playerModeComboBox = new JComboBox<>(playerModeOptions);
 
 		//Buttons
 		JButton startButton = new JButton();
 		startButton.setBackground(Color.white);
 		startButton.setText("Start");
 		//Captures IOException
-		startButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					//Assign combobox values to main variables governing the game
-					Main.gameMode = (String) gameModeComboBox.getSelectedItem();
-					Main.playerMode = (String) playerModeComboBox.getSelectedItem();
-					gameModeChooserFrame.dispose();
-					Main.startApplication();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+		startButton.addActionListener(e -> {
+			try {
+				//Assign combo-box values to main variables governing the game
+				Main.gameMode = (String) gameModeComboBox.getSelectedItem();
+				Main.playerMode = (String) playerModeComboBox.getSelectedItem();
+				gameModeChooserFrame.dispose();
+				Main.startApplication();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
 
 		JButton helpButton = new JButton();
 		helpButton.setBackground(Color.white);
 		helpButton.setText("Help");
-		helpButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GUI.showHelp();
-			}
-		});
+		helpButton.addActionListener(e -> GameWindow.showHelp());
 
 		JButton quitButton = new JButton();
 		quitButton.setBackground(Color.white);
 		quitButton.setText("Quit");
-		quitButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.shutdownApplication();
-			}
-		});
+		quitButton.addActionListener(e -> Main.shutdownApplication());
 
 		//Add items to the main panel
 		topPanel.add(gameTitleLabel);
