@@ -63,7 +63,7 @@ class GameModeChooser {
 		JButton startButton = new JButton();
 		startButton.setBackground(Color.white);
 		startButton.setText("Start");
-		//Captures IOException
+
 		startButton.addActionListener(e -> {
 			//Assign combo-box values to main variables governing the game
 			TicTacToe.gameMode = (String) gameModeComboBox.getSelectedItem();
@@ -75,14 +75,13 @@ class GameModeChooser {
 		JButton helpButton = new JButton();
 		helpButton.setBackground(Color.white);
 		helpButton.setText("Help");
-		helpButton.addActionListener(e -> GameWindow.showHelp());
+		helpButton.addActionListener(e -> GameWindow.displayHelp());
 
 		JButton quitButton = new JButton();
 		quitButton.setBackground(Color.white);
 		quitButton.setText("Quit");
 		quitButton.addActionListener(e -> TicTacToe.shutdownApplication());
 
-		//Add items to the main panel
 		topPanel.add(gameTitleLabel);
 		topPanel.add(gameModeLabel);
 		topPanel.add(Box.createVerticalStrut(10));
