@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.IOException;
 
 class GameModeChooser {
 
@@ -66,15 +65,11 @@ class GameModeChooser {
 		startButton.setText("Start");
 		//Captures IOException
 		startButton.addActionListener(e -> {
-			try {
-				//Assign combo-box values to main variables governing the game
-				TicTacToe.gameMode = (String) gameModeComboBox.getSelectedItem();
-				TicTacToe.playerMode = (String) playerModeComboBox.getSelectedItem();
-				gameModeChooserFrame.dispose();
-				TicTacToe.startApplication();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			//Assign combo-box values to main variables governing the game
+			TicTacToe.gameMode = (String) gameModeComboBox.getSelectedItem();
+			TicTacToe.playerMode = (String) playerModeComboBox.getSelectedItem();
+			gameModeChooserFrame.dispose();
+			TicTacToe.startApplication();
 		});
 
 		JButton helpButton = new JButton();
