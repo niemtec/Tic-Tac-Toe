@@ -52,11 +52,11 @@ class GameModeChooser {
 
 		//gameModeComboBox properties
 		//selected option is processed when user presses start
-		String[] gameModeOptions = {"Player vs Player", "Player vs AI"};
+		String[] gameModeOptions = {"Player vs Player", "Player vs Computer"};
 		gameModeComboBox = new JComboBox<>(gameModeOptions);
 
 		//playerModeComboBox properties
-		String[] playerModeOptions = {"Player 1", "Player 2 (or AI)"};
+		String[] playerModeOptions = {"Player 1", "Player 2 (or Computer)"};
 		playerModeComboBox = new JComboBox<>(playerModeOptions);
 
 		//Buttons

@@ -102,9 +102,9 @@ class GameWindow {
 			setIndicatorLabel("Press Start When Ready");
 			TicTacToe.movementCount = 1;
 			TicTacToe.chooseFirstPlayer();
-			//If AI is on and its turn is due, make the move
-			if (TicTacToe.aiEnabled && TicTacToe.currentPlayer == 2) {
-				AI.aiMove();
+			//If computer is on and its turn is due, make the move
+			if (TicTacToe.computerPlayerEnabled && TicTacToe.currentPlayer == 2) {
+				ComputerPlayer.computerMove();
 				TicTacToe.currentPlayer++;
 				Validation.checkMove(XOButton.lastIconCheck);
 			}
@@ -136,8 +136,8 @@ class GameWindow {
 		int previousPlayer = TicTacToe.currentPlayer%2;
 
 		//Determine what to call the second player based on the game mode
-		if (TicTacToe.aiEnabled) {
-			secondPlayerName = "AI";
+		if (TicTacToe.computerPlayerEnabled) {
+			secondPlayerName = "Computer";
 		} else {
 			secondPlayerName = "Player 2";
 		}

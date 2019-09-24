@@ -49,13 +49,13 @@ public class XOButton extends JButton implements ActionListener {
 
 		//Check if the move made was the winning one or whether it was a draw
 		Validation.checkMove(lastIconCheck);
-		//AI only makes the move if it is enabled and previous player made the move
-		if (TicTacToe.aiEnabled) {
-			AI.aiMove();
+		//Computer only makes the move if it is enabled and previous player made the move
+		if (TicTacToe.computerPlayerEnabled) {
+			ComputerPlayer.computerMove();
 		} else {
 			TicTacToe.movementCount++;
 		}
-		//Validate the move after the AI moves (if it does)
+		//Validate the move after the computer moves (if it does)
 		Validation.checkMove(lastIconCheck);
 		//Increment the current player count
 		TicTacToe.currentPlayer++;

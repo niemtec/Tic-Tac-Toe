@@ -8,7 +8,7 @@ public class TicTacToe {
 	static String[] gameGrid = new String[9];
 	static byte movementCount = 1;
 	static int currentPlayer;
-	static boolean aiEnabled;
+	static boolean computerPlayerEnabled;
 	static String gameMode = null;
 	static String playerMode = null;
 
@@ -18,7 +18,7 @@ public class TicTacToe {
 	}
 
 	static void startApplication() {
-		aiEnabled = !gameMode.equals("Player vs Player");
+		computerPlayerEnabled = !gameMode.equals("Player vs Player");
 
 		try {
 			//Create the game app window
@@ -36,9 +36,9 @@ public class TicTacToe {
 		//Choose the first player based on user input or random chance (if game is reset)
 		chooseFirstPlayer();
 
-		//If AI is on and its turn is due, make the first move
-		if (aiEnabled && currentPlayer == 2) {
-			AI.aiMove();
+		//If Computer player is on and its turn is due, make the first move
+		if (computerPlayerEnabled && currentPlayer == 2) {
+			ComputerPlayer.computerMove();
 			currentPlayer++;
 			Validation.checkMove(XOButton.lastIconCheck);
 		}
@@ -53,13 +53,13 @@ public class TicTacToe {
 		//Setup the game for first start, otherwise use random generation
 		if (playerMode.equals("Player 1")) {
 			currentPlayer = 1;
-		} else if (playerMode.equals("Player 2 (or AI)")) {
+		} else if (playerMode.equals("Player 2 (or Computer)")) {
 			currentPlayer = 2;
 		}
 
 		//Announce who will be making the first move
-		if (aiEnabled && currentPlayer == 2) {
-			JOptionPane.showMessageDialog(null, "AI will now make the move", "AI Engaged", JOptionPane.INFORMATION_MESSAGE);
+		if (computerPlayerEnabled && currentPlayer == 2) {
+			JOptionPane.showMessageDialog(null, "Computer will now make the move", "Computer Engaged", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(null, "Player " + currentPlayer + " you are starting the game as X.",
 					  "Player " + currentPlayer, JOptionPane.INFORMATION_MESSAGE);
