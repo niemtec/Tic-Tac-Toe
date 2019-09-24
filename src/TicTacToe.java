@@ -3,22 +3,15 @@ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-/**
- * CS1702: Introductory Programming Coursework
- * Brunel University London 2015/16
- * Jakub Adrian Niemiec (1500408)
- * Any and all copyright belongs to Brunel University
- * (This is a modified source code and therefore differs to that submitted as part of the course)
- */
 
-public class Main {
+public class TicTacToe {
 	//gameGrid array stores all of the inputs from the user
-	public static String[] gameGrid = new String[9];
-	public static byte movementCount = 1;
-	public static int currentPlayer;
-	public static boolean aiEnabled;
-	public static String gameMode = null;
-	public static String playerMode = null;
+	static String[] gameGrid = new String[9];
+	static byte movementCount = 1;
+	static int currentPlayer;
+	static boolean aiEnabled;
+	static String gameMode = null;
+	static String playerMode = null;
 
 	public static void main(String[] args) {
 		//Display primary choice panel. Ask the user about game settings.
@@ -78,7 +71,6 @@ public class Main {
 		//Clear player mode for future use
 		playerMode = null;
 	}
-
 	public static void shutdownApplication() {
 		System.exit(0);
 	}

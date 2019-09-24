@@ -32,13 +32,13 @@ public class XOButton extends JButton implements ActionListener {
 
 		for (int i = 0; i < GameWindow.button.length; i++) {
 			if (click == GameWindow.button[i]) {
-				if (Main.movementCount%2 == 1) {
+				if (TicTacToe.movementCount%2 == 1) {
 					GameWindow.button[i].setIcon(XOButton.iconX);
-					Main.gameGrid[i] = "X";	//record current value to the game grid
+					TicTacToe.gameGrid[i] = "X";	//record current value to the game grid
 					lastIconCheck = "X";
 				} else {
 					GameWindow.button[i].setIcon(XOButton.iconO);
-					Main.gameGrid[i] = "O";	//record current value to the game grid
+					TicTacToe.gameGrid[i] = "O";	//record current value to the game grid
 					lastIconCheck = "O";
 				}
 				//Disable the button after it has been clicked (to prevent errors and void the need for error checking)
@@ -50,21 +50,21 @@ public class XOButton extends JButton implements ActionListener {
 		//Check if the move made was the winning one or whether it was a draw
 		Validation.checkMove(lastIconCheck);
 		//AI only makes the move if it is enabled and previous player made the move
-		if (Main.aiEnabled) {
+		if (TicTacToe.aiEnabled) {
 			AI.aiMove();
 		} else {
-			Main.movementCount++;
+			TicTacToe.movementCount++;
 		}
 		//Validate the move after the AI moves (if it does)
 		Validation.checkMove(lastIconCheck);
 		//Increment the current player count
-		Main.currentPlayer++;
+		TicTacToe.currentPlayer++;
 	}
 
 	public static void disableButton(int i) {
-		if (Main.gameGrid[i].contains("X")) {
+		if (TicTacToe.gameGrid[i].contains("X")) {
 			GameWindow.button[i].setDisabledIcon(iconX);
-		} else if (Main.gameGrid[i].contains("O")) {
+		} else if (TicTacToe.gameGrid[i].contains("O")) {
 			GameWindow.button[i].setDisabledIcon(iconO);
 		}
 		GameWindow.button[i].setEnabled(false);

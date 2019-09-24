@@ -87,7 +87,7 @@ public class GameWindow {
 		//Exit Button
 		exitButton.setBackground(Color.white);
 		exitButton.setText("Exit");
-		exitButton.addActionListener(e -> Main.shutdownApplication());
+		exitButton.addActionListener(e -> TicTacToe.shutdownApplication());
 	}
 
 	/**
@@ -101,12 +101,12 @@ public class GameWindow {
 			clearBoardIcons();
 			enableGridButtons();
 			setIndicatorLabel("Press Start When Ready");
-			Main.movementCount = 1;
-			Main.chooseFirstPlayer();
+			TicTacToe.movementCount = 1;
+			TicTacToe.chooseFirstPlayer();
 			//If AI is on and its turn is due, make the move
-			if (Main.aiEnabled && Main.currentPlayer == 2) {
+			if (TicTacToe.aiEnabled && TicTacToe.currentPlayer == 2) {
 				AI.aiMove();
-				Main.currentPlayer++;
+				TicTacToe.currentPlayer++;
 				Validation.checkMove(XOButton.lastIconCheck);
 			}
 		} catch (NullPointerException ignore) {}
@@ -114,7 +114,7 @@ public class GameWindow {
 
 	//Clear all saved records from the gameGrid (restore them back to original "." state)
 	public static void clearGameGridArray() {
-		Arrays.fill(Main.gameGrid, ".");
+		Arrays.fill(TicTacToe.gameGrid, ".");
 	}
 
 	//Clear all icons from the game grid
@@ -134,10 +134,10 @@ public class GameWindow {
 	//Method which updates the turn indicator label in the main app window
 	public static void updateTurnIndicatorLabel() {
 		String secondPlayerName;
-		int previousPlayer = Main.currentPlayer%2;
+		int previousPlayer = TicTacToe.currentPlayer%2;
 
 		//Determine what to call the second player based on the game mode
-		if (Main.aiEnabled) {
+		if (TicTacToe.aiEnabled) {
 			secondPlayerName = "AI";
 		} else {
 			secondPlayerName = "Player 2";
@@ -170,9 +170,9 @@ public class GameWindow {
 
 		if (reply == JOptionPane.YES_OPTION) {
 			GameWindow.resetGame();
-			Main.movementCount = 0;	//prevents issues with O being set
+			TicTacToe.movementCount = 0;	//prevents issues with O being set
 		} else {
-			Main.shutdownApplication();
+			TicTacToe.shutdownApplication();
 		}
 	}
 
@@ -187,7 +187,7 @@ public class GameWindow {
 				GameWindow.resetGame();
 			} catch (NullPointerException ignored) {}
 		} else {
-			Main.shutdownApplication();
+			TicTacToe.shutdownApplication();
 		}
 	}
 

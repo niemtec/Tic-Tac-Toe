@@ -7,25 +7,25 @@ public class AI {
 	public static String aiSymbol;
 	public static void aiMove() {
 		//String aiSymbol;
-		if (Main.movementCount % 2 == 1) {
+		if (TicTacToe.movementCount % 2 == 1) {
 			aiSymbol = "X";
 		} else {
 			aiSymbol = "O";
 		}
 
 		//If the central positon of the grid is empty, use that if you can
-		if (Main.gameGrid[4].equals(".")) {
+		if (TicTacToe.gameGrid[4].equals(".")) {
 			setAIIcon(4, aiSymbol);
 		} else {
 			//If the preferred position is taken, try a random one
 			Random rand = new Random();
 			int randomPosition = rand.nextInt(8);
-			if(Main.gameGrid[randomPosition].equals(".")) {
+			if(TicTacToe.gameGrid[randomPosition].equals(".")) {
 				setAIIcon(randomPosition, aiSymbol);
 			} else {
 				//If random move is unavailable, try to fill in the nearest unavailable square
-				for (int i = 0; i < Main.gameGrid.length; i++) {
-					if (Main.gameGrid[i].equals(".")) {
+				for (int i = 0; i < TicTacToe.gameGrid.length; i++) {
+					if (TicTacToe.gameGrid[i].equals(".")) {
 						setAIIcon(i, aiSymbol);
 						break;
 					}
@@ -43,7 +43,7 @@ public class AI {
 		}
 
 		XOButton.lastIconCheck = aiSymbol;
-		Main.gameGrid[arrayIndex] = aiSymbol;
+		TicTacToe.gameGrid[arrayIndex] = aiSymbol;
 		XOButton.disableButton(arrayIndex);
 	}
 }

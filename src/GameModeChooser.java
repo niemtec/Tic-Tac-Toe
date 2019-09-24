@@ -68,10 +68,10 @@ public class GameModeChooser {
 		startButton.addActionListener(e -> {
 			try {
 				//Assign combo-box values to main variables governing the game
-				Main.gameMode = (String) gameModeComboBox.getSelectedItem();
-				Main.playerMode = (String) playerModeComboBox.getSelectedItem();
+				TicTacToe.gameMode = (String) gameModeComboBox.getSelectedItem();
+				TicTacToe.playerMode = (String) playerModeComboBox.getSelectedItem();
 				gameModeChooserFrame.dispose();
-				Main.startApplication();
+				TicTacToe.startApplication();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -85,7 +85,7 @@ public class GameModeChooser {
 		JButton quitButton = new JButton();
 		quitButton.setBackground(Color.white);
 		quitButton.setText("Quit");
-		quitButton.addActionListener(e -> Main.shutdownApplication());
+		quitButton.addActionListener(e -> TicTacToe.shutdownApplication());
 
 		//Add items to the main panel
 		topPanel.add(gameTitleLabel);
@@ -103,10 +103,10 @@ public class GameModeChooser {
 		masterPanel.add(middlePanel);
 		masterPanel.add(bottomPanel);
 
+		masterPanel.setVisible(true);
 		topPanel.setVisible(true);
 		middlePanel.setVisible(true);
 		bottomPanel.setVisible(true);
-		masterPanel.setVisible(true);
 		gameModeChooserFrame.setVisible(true);
 		gameModeChooserFrame.add(masterPanel);
 	}
