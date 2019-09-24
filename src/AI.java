@@ -1,11 +1,11 @@
 import java.util.Random;
 
-public class AI {
+class AI {
 	/**
 	 * Class containing all strategy parameters for the computer to make the move.
 	 */
-	public static String aiSymbol;
-	public static void aiMove() {
+	private static String aiSymbol;
+	static void aiMove() {
 		//String aiSymbol;
 		if (TicTacToe.movementCount % 2 == 1) {
 			aiSymbol = "X";

@@ -7,16 +7,14 @@ import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class GameWindow {
-	//Padding for some of the board elements (for easier modification)
-	final byte paddingSize = 5;
+class GameWindow {
 	//Create gameGrid buttons
-	public static XOButton button[] = new XOButton[9];
+	static XOButton[] button = new XOButton[9];
 	//Turn indicator label
-	public static JLabel indicatorLabel = new JLabel();
+	private static JLabel indicatorLabel = new JLabel();
 
 	//JFrame Constructor
-	public GameWindow() throws IOException {
+	GameWindow() throws IOException {
 		//windowFrame Properties, main window containing all elements
 		JFrame windowFrame = new JFrame();
 		windowFrame.setSize(410, 510);
@@ -30,6 +28,8 @@ public class GameWindow {
 		//indicatorPanel Properties (will contain turn indicator)
 		JPanel indicatorPanel = new JPanel();
 		indicatorPanel.setSize(400, 50);
+		//Padding for some of the board elements (for easier modification)
+		byte paddingSize = 5;
 		indicatorPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 		indicatorPanel.add(getIndicatorLabel());
 		indicatorPanel.setVisible(true);
@@ -95,7 +95,7 @@ public class GameWindow {
 	 * Next player is then generated randomly if the game is continued.
 	 **/
 
-	public static void resetGame() {
+	private static void resetGame() {
 		try {
 			clearGameGridArray();
 			clearBoardIcons();
@@ -113,26 +113,26 @@ public class GameWindow {
 	}
 
 	//Clear all saved records from the gameGrid (restore them back to original "." state)
-	public static void clearGameGridArray() {
+	private static void clearGameGridArray() {
 		Arrays.fill(TicTacToe.gameGrid, ".");
 	}
 
 	//Clear all icons from the game grid
-	public static void clearBoardIcons() {
+	static void clearBoardIcons() {
 		for (int i = 0; i < 9; i++) {
 			button[i].setIcon(null);
 		}
 	}
 
 	//Enables all action listeners on the game grid
-	public static void enableGridButtons() {
+	private static void enableGridButtons() {
 		for (int i = 0; i < 9; i++) {
 			GameWindow.button[i].setEnabled(true);
 		}
 	}
 
 	//Method which updates the turn indicator label in the main app window
-	public static void updateTurnIndicatorLabel() {
+	static void updateTurnIndicatorLabel() {
 		String secondPlayerName;
 		int previousPlayer = TicTacToe.currentPlayer%2;
 
@@ -151,12 +151,12 @@ public class GameWindow {
 	}
 
 	//Getter for the turn indicator label
-	public static JLabel getIndicatorLabel() {
+	private static JLabel getIndicatorLabel() {
 		return GameWindow.indicatorLabel;
 	}
 
 	//setter for the turn indicator label (based on string input)
-	public static void setIndicatorLabel(String label) {
+	static void setIndicatorLabel(String label) {
 		GameWindow.indicatorLabel.setText(String.valueOf(label));
 	}
 
@@ -164,7 +164,7 @@ public class GameWindow {
 	 * Contains all the graphical elements outside of the main app window and game chooser (popups, messages etc)
 	 **/
 	//Message which announces draw being detected
-	public static void drawDetectedMessage() {
+	static void drawDetectedMessage() {
 		int reply = JOptionPane.showConfirmDialog(null, "It's a draw! \n" +
 				  "\n Would you like to play again?", "Draw", JOptionPane.YES_NO_OPTION);
 
@@ -177,7 +177,7 @@ public class GameWindow {
 	}
 
 	//Message which announces a winner being detected
-	public static void winnerDetectedMessage(String winnerName) {
+	static void winnerDetectedMessage(String winnerName) {
 		int reply = JOptionPane.showConfirmDialog(null, "Whoa! What a game! " + winnerName + " won the game! \n" +
 				  "\n Would you like to play again?", "Win", JOptionPane.YES_NO_OPTION);
 
@@ -192,7 +192,7 @@ public class GameWindow {
 	}
 
 	//Method which displays a simple help window explaining the rules of the game
-	public static void showHelp() {
+	static void showHelp() {
 		JOptionPane.showMessageDialog(null,
 				  "The Rules: \n" +
 							 "- The game is played on a grid that's 3x3 \n" +
@@ -207,7 +207,7 @@ public class GameWindow {
 	}
 
 	//Method printing out a missing resource report (error when there are no images found)
-	public static void missingResourcesError() {
+	static void missingResourcesError() {
 		JOptionPane.showMessageDialog(null, "One or more image files is missing from the \n" +
 				  "'/resources' folder. The application will now close", "Missing Files", JOptionPane.WARNING_MESSAGE);
 	}

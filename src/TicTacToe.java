@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-
 public class TicTacToe {
 	//gameGrid array stores all of the inputs from the user
 	static String[] gameGrid = new String[9];
@@ -46,7 +45,7 @@ public class TicTacToe {
 	}
 
 
-	public static void chooseFirstPlayer() {
+	static void chooseFirstPlayer() {
 		//Generate random number to determine who goes first (for reset function)
 		Random rand = new Random();
 		currentPlayer = rand.nextInt(2) + 1;
@@ -71,7 +70,7 @@ public class TicTacToe {
 		//Clear player mode for future use
 		playerMode = null;
 	}
-	public static void shutdownApplication() {
+	static void shutdownApplication() {
 		System.exit(0);
 	}
 }

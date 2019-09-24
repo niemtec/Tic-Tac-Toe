@@ -3,13 +3,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.IOException;
 
-public class GameModeChooser {
-	int paddingSize = 5;
+class GameModeChooser {
 
 	private JComboBox<String> gameModeComboBox = new JComboBox<>();
 	private JComboBox<String> playerModeComboBox = new JComboBox<>();
 
-	public GameModeChooser() {
+	GameModeChooser() {
 		//GameModeChooser frame properties
 		final JFrame gameModeChooserFrame = new JFrame();
 		gameModeChooserFrame.setSize(300, 250);
@@ -27,6 +26,7 @@ public class GameModeChooser {
 
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+		int paddingSize = 5;
 		topPanel.setBorder(new EmptyBorder(paddingSize, 0, paddingSize, 0));
 
 		JPanel middlePanel = new JPanel();

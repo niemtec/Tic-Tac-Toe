@@ -9,10 +9,10 @@ import javax.swing.*;
 public class XOButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 6167021308779841017L;
 	//Stores previously used symbol and passes it on to the validation function
-	public static String lastIconCheck = null;
+	static String lastIconCheck = null;
 	static ImageIcon iconX, iconO;
 
-	public XOButton() {
+	XOButton() {
 		this.setBackground(Color.white);
 		try {
 			iconX = new ImageIcon(ImageIO.read(GameWindow.class.getResource("resources/X.png")));
@@ -61,7 +61,7 @@ public class XOButton extends JButton implements ActionListener {
 		TicTacToe.currentPlayer++;
 	}
 
-	public static void disableButton(int i) {
+	static void disableButton(int i) {
 		if (TicTacToe.gameGrid[i].contains("X")) {
 			GameWindow.button[i].setDisabledIcon(iconX);
 		} else if (TicTacToe.gameGrid[i].contains("O")) {

@@ -4,9 +4,9 @@ import java.util.Objects;
  * This class contains all validation rules which determine the current state and/or result of the game.
  */
 
-public class  Validation {
+class  Validation {
 	//Method used to validate each move, checking if the winning condition is met, it announces win otherwise it checks for draw
-	public static void checkMove(String lastIcon) {
+	static void checkMove(String lastIcon) {
 		if (checkWin(lastIcon)) {
 			//Indicate the game winner
 			GameWindow.setIndicatorLabel(lastIcon + " won the game!");
@@ -19,7 +19,7 @@ public class  Validation {
 	}
 
 	//Method which checks for a win from the passed value (either X or O), if 3 in a row are found then a win is returned
-	public static boolean checkWin(String value) {
+	private static boolean checkWin(String value) {
 		boolean winDetected;
 		//Check all possible winning conditions and return true if a win is detected
 		winDetected = (TicTacToe.gameGrid[0].contains(value) && TicTacToe.gameGrid[1].contains(value) && TicTacToe.gameGrid[2].contains(value))
@@ -35,7 +35,7 @@ public class  Validation {
 	}
 
 	//Method which checks for a draw scenario based on the game array contents
-	public static void checkDraw() {
+	private static void checkDraw() {
 		//Check if all boxes are filled and no win is present
 		int filledIndexCount = 0;
 		for (int i = 0; i < TicTacToe.gameGrid.length; i++) {
