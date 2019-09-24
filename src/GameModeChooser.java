@@ -102,7 +102,7 @@ class GameModeChooser {
 		topPanel.setVisible(true);
 		middlePanel.setVisible(true);
 		bottomPanel.setVisible(true);
-		gameModeChooserFrame.setVisible(true);
 		gameModeChooserFrame.add(masterPanel);
+		gameModeChooserFrame.setVisible(true);
 	}
 }
