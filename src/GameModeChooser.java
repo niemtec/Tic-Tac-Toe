@@ -5,8 +5,8 @@ import java.io.IOException;
 
 class GameModeChooser {
 
-	private JComboBox<String> gameModeComboBox = new JComboBox<>();
-	private JComboBox<String> playerModeComboBox = new JComboBox<>();
+	private JComboBox<String> gameModeComboBox;
+	private JComboBox<String> playerModeComboBox;
 
 	GameModeChooser() {
 		//GameModeChooser frame properties

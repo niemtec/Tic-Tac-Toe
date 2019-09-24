@@ -1,4 +1,4 @@
-import java.io.IOException;
+
 import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -17,7 +17,7 @@ public class TicTacToe {
 		new GameModeChooser();
 	}
 
-	public static void startApplication() throws IOException {
+	static void startApplication() {
 		aiEnabled = !gameMode.equals("Player vs Player");
 
 		try {

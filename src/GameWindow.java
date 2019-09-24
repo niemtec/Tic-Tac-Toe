@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.io.IOException;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,7 +13,7 @@ class GameWindow {
 	private static JLabel indicatorLabel = new JLabel();
 
 	//JFrame Constructor
-	GameWindow() throws IOException {
+	GameWindow() {
 		//windowFrame Properties, main window containing all elements
 		JFrame windowFrame = new JFrame();
 		windowFrame.setSize(410, 510);
